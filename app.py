@@ -8,7 +8,8 @@ from flask_httpauth import HTTPBasicAuth
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
-users = json.load(open('.auth'))
+auth_fn = os.path.join(os.path.dirname(__file__), '.auth')
+users = json.load(open(auth_fn))
 
 @auth.get_password
 def get_pw(username):
@@ -18,12 +19,12 @@ def get_pw(username):
 
 @app.route('/lock', methods=['POST'])
 @auth.login_required
-def lock():
+def f_lock():
   lock.lock()
 
 @app.route('/unlock', methods=['POST'])
 @auth.login_required
-def lock():
+def f_unlock():
   lock.unlock()
 
 @app.route('/')
