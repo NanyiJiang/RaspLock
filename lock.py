@@ -22,7 +22,7 @@ def step(n):
   turn_off_motor()
 
 def lock():
-  step(150)
+  step(-150)
 
 def unlock():
-  step(-150)
+  step(150)
