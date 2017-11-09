@@ -2,8 +2,6 @@ from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor, Adafruit_Step
 
 import time
 import atexit
-from flask import Flask
-app = Flask(__name__)
 
 mh = Adafruit_MotorHAT(addr = 0x60)
 
@@ -22,3 +20,9 @@ def step(n):
     dir = Adafruit_MotorHAT.FORWARD
   myStepper.step(abs(n), dir, Adafruit_MotorHAT.DOUBLE)
   turn_off_motor()
+
+def lock():
+  step(150)
+
+def unlock():
+  step(-150)
